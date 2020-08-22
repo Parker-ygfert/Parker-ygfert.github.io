@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", function() {
     inputForm.reset();
 
     generateRecord(revenue);
-//     renderItems(local);
+    // renderItems(local);
     // console.log(generateRecord(revenue));
   });
 
