@@ -88,6 +88,8 @@ window.addEventListener("DOMContentLoaded", function() {
       })
     ));
 
+    local = JSON.parse(localStorage.getItem("records")) || [];
+
     e.target.parentNode.parentNode.remove();
   });
 
