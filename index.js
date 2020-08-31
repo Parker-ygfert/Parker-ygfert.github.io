@@ -5,10 +5,55 @@ window.addEventListener("DOMContentLoaded", function() {
   const template = document.querySelector("#temp");
   let local = JSON.parse(localStorage.getItem("records")) || [];
 
+  // inputForm.querySelectorAll("div").forEach(function(input) {
+    // let pop = document.createElement("div")
+    // let popup = document.createElement("span");
+    // pop.classList.add("popup");
+    // popup.classList.add("popuptext");
+    // pop.appendChild(popup);
+    // input.appendChild(pop);
+  // })
+
   renderItems(local.sort((a, b) => a.date > b.date ? 1 : -1));
+
+  inputForm.date.setAttribute("required", "required");
+  inputForm.amount.setAttribute("required", "required");
+  inputForm.description.setAttribute("required", "required");
 
   inputForm.addEventListener("submit", function(e) {
     e.preventDefault();
+
+    // if (!inputForm.date.value) {
+    //   inputForm.date.style.borderColor = "red";
+    //   popup = inputForm[1].nextElementSibling.firstChild;
+    //   popup.classList.add("show");
+    //   popup.textContent = "請選擇日期";
+    //   return;
+    // } else {
+    //   inputForm.date.style.borderColor = "#495057";
+    //   popup.classList.remove("show");
+    // }
+    // if (!inputForm.amount.value) {
+    //   inputForm.amount.style.borderColor = "red";
+    //   popup = inputForm[2].nextElementSibling.firstChild;
+    //   popup.classList.add("show");
+    //   popup.textContent = "請填入金額";
+    //   return;
+    // } else {
+    //   inputForm.amount.style.borderColor = "#495057";
+    //   popup.classList.remove("show");
+    // }
+    // if (!inputForm.description.value) {
+    //   inputForm.description.style.borderColor = "red";
+    //   popup = inputForm[3].nextElementSibling.firstChild;
+    //   popup.classList.add("show");
+    //   popup.textContent = "請填寫記帳描述";
+    //   return;
+    // } else {
+    //   inputForm.description.style.borderColor = "#495057";
+    //   popup.classList.remove("show");
+    // }
+    
     let revenue = {
       uuid: generateUUID(),
       date: inputForm.date.value,
@@ -24,12 +69,14 @@ window.addEventListener("DOMContentLoaded", function() {
     inputForm.reset();
 
     generateRecord(revenue);
-    // renderItems(local);
+    records.innerHTML = "";
+    renderItems(local);
     // console.log(generateRecord(revenue));
   });
 
 
 
+  //* 移除記帳資料
   records.addEventListener("click", function(e) {
     // console.log(e.target.dataset["uuid"]);
     if (!e.target.classList.contains("remove")) {
